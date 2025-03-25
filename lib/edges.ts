@@ -171,6 +171,10 @@ Formulate an improved question:`,
   // Grader
   const model = new ChatOpenAI({
     model: "gpt-4o",
+    apiKey: apiKey,
+    configuration: {
+        baseURL: "https://api.deepinfra.com/v1/openai",
+    },
     temperature: 0,
     streaming: true,
   });
@@ -201,7 +205,11 @@ async function generate(state: typeof GraphState.State): Promise<Partial<typeof 
   const prompt = await pull<ChatPromptTemplate>("rlm/rag-prompt");
 
   const llm = new ChatOpenAI({
-    model: "gpt-4o",
+    model: "anthropic/claude-3-7-sonnet-latest",
+    apiKey: apiKey,
+    configuration: {
+        baseURL: "https://api.deepinfra.com/v1/openai",
+    },
     temperature: 0,
     streaming: true,
   });
@@ -217,3 +225,5 @@ async function generate(state: typeof GraphState.State): Promise<Partial<typeof 
     messages: [response],
   };
 }
+
+export {agent, gradeDocuments, rewrite, generate}
