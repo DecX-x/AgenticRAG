@@ -42,4 +42,4 @@ const vectorStore = await MemoryVectorStore.fromDocuments(
 
 const retriever = vectorStore.asRetriever();
 
-export default retriever;
+export { apiKey, retriever };
