@@ -6,7 +6,7 @@ import { config } from "dotenv";
 config();
 const apiKey = process.env.DEEPINFRA_API_KEY;
 
-
+// document URLs example
 const urls = [
   "https://lilianweng.github.io/posts/2023-06-23-agent/",
   "https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/",
