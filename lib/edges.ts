@@ -63,7 +63,11 @@ async function gradeDocuments(state: typeof GraphState.State): Promise<Partial<t
   );
 
   const model = new ChatOpenAI({
-    model: "gpt-4o",
+    model: "anthropic/claude-3-7-sonnet-latest",
+    apiKey: apiKey,
+    configuration: {
+        baseURL: "https://api.deepinfra.com/v1/openai",
+    },
     temperature: 0,
   }).bindTools([tool], {
     tool_choice: tool.name,
@@ -170,7 +174,7 @@ Formulate an improved question:`,
 
   // Grader
   const model = new ChatOpenAI({
-    model: "gpt-4o",
+    model: "anthropic/claude-3-7-sonnet-latest",
     apiKey: apiKey,
     configuration: {
         baseURL: "https://api.deepinfra.com/v1/openai",
@@ -226,4 +230,4 @@ async function generate(state: typeof GraphState.State): Promise<Partial<typeof 
   };
 }
 
-export {agent, gradeDocuments, rewrite, generate}
+export {agent, gradeDocuments, rewrite, generate, shouldRetrieve, checkRelevance}
